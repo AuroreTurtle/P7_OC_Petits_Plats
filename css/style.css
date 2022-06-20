@@ -1,0 +1,276 @@
+body {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+* {
+    font-family: "Lato", sans-serif;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: center;
+}
+
+#logo {
+    width: 20%;
+}
+
+/* Main */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+#searchbar {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    background: #e7e7e7;
+    border-radius: 5px;
+    padding: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+#search {
+    width: 100%;
+    height: 30px;
+    background: #e7e7e7;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    opacity: 0.6;
+}
+
+/* Tag */
+#option_selected {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 110px;
+    height: 37px;
+    font-weight: 700;
+    font-size: 14px;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+/* Combobox */
+#combobox {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.combobox_search {
+    width: 200px;
+    margin-right: 5%;
+}
+
+.combobox_btn,
+.options li {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.combobox_btn {
+    height: 50px;
+    padding: 0 20px;
+    border-radius: 5px 5px 0 0;
+    color: white;
+}
+
+.combobox_btn input {
+    border: none;
+    width: 130px;
+    margin-right: 15px;
+    font-size: 18px;
+    color: white;
+}
+
+.combobox_btn input::placeholder {
+    color: white;
+}
+
+.combobox_btn .fa-angle-down {
+    font-size: 28px;
+    transition: transform 0.3s linear;
+}
+
+#combobox_ingredient.active .fa-angle-down,
+#combobox_appliance.active .fa-angle-down,
+#combobox_ustensil.active .fa-angle-down {
+    transform: rotate(180deg);
+}
+
+#combobox .combobox_search.active {
+    width: 100%;
+    margin-left: 2%;
+    margin-right: 15%;
+}
+
+#combobox .combobox_search.active:nth-child(1) {
+    margin-left: 0;
+}
+
+.combobox_search.active .combobox_btn {
+    width: 640px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.combobox_search.active input {
+    width: 600px;
+    padding: 4px;
+}
+
+.combobox_search.active input::placeholder {
+    color: #ffffff81;
+}
+
+.choice {
+    display: none;
+    padding: 1px 10px 0 10px;
+    border-radius: 0 0 5px 5px;
+}
+
+#combobox_ingredient.active .choice,
+#combobox_appliance.active .choice,
+#combobox_ustensil.active .choice {
+    display: block;
+    width: 660px;
+    max-height: 340px;
+    overflow: auto;
+    position: absolute;
+    z-index: 1;
+}
+
+.choice .options {
+    margin-top: 10px;
+    margin-left: 10px;
+    padding-inline-start: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 5%;
+}
+
+.options li {
+    height: 45px;
+    color: white;
+    z-index: 1;
+}
+
+.ingredient,
+.ingredient input {
+    background-color: #3282f7;
+}
+
+.appliance,
+.appliance input {
+    background-color: #68d9a4;
+}
+
+.ustensil,
+.ustensil input {
+    background-color: #ed6454;
+}
+
+/* Result search */
+#result {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 4%;
+    grid-row-gap: 1%;
+    margin-top: 4%;
+}
+
+article {
+    margin-bottom: 2%;
+}
+
+.image {
+    width: 380px;
+    height: 170px;
+    background-color: #c7bebe;
+    border-radius: 5px 5px 0px 0px;
+    margin: 0;
+}
+
+.info {
+    width: 380px;
+    height: 190px;
+    background-color: #e7e7e7;
+    border-radius: 0px 0px 5px 5px;
+    margin: 0;
+}
+
+.info_header,
+.info_complement {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+.info_header {
+    padding-top: 4%;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 400;
+    width: 250px;
+    margin: 0;
+}
+
+.info_time {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.fa-clock {
+    padding-right: 6px;
+}
+
+.list_ingredient {
+    list-style-type: none;
+    padding: 0;
+    margin: 12px 0 0 0;
+}
+
+.list_ingredient li {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.list_ingredient span {
+    font-weight: 400;
+}
+
+.info_description {
+    width: 170px;
+    max-height: 110px;
+    font-size: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

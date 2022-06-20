@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script src="https://kit.fontawesome.com/48b30f5d9d.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="assets/icone.PNG" />
+    <title>Les Petits Plats</title>
+</head>
+
+<body>
+    <header>
+        <img id="logo" src="assets/logo.PNG" alt="Logo les Petits Plats" />
+    </header>
+
+    <main>
+        <form>
+            <!-- Main search -->
+            <div id="searchbar">
+                <input id="search" type="search" placeholder="Rechercher une recette" name="q" />
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <!-- Tags -->
+            <div id="option_selected">
+            </div>
+
+            <!--Combobox -->
+            <div id="combobox">
+                <div class="combobox_search" id="combobox_ingredient">
+                    <div class="combobox_btn ingredient" data-name="Ingredient">
+                        <input type="text" placeholder="Ingrédients" onkeypress="updateOption()" id="ingredient" />
+                        <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                    <div class="choice ingredient">
+                        <ul class="options" id="choice_ingredient"></ul>
+                    </div>
+                </div>
+
+                <div class="combobox_search" id="combobox_appliance">
+                    <div class="combobox_btn appliance" data-name="Appliance">
+                        <input type="text" placeholder="Appareils" onkeypress="updateOption()" id="appliance" />
+                        <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                    <div class="choice appliance">
+                        <ul class="options" id="choice_appliance"></ul>
+                    </div>
+                </div>
+
+                <div class="combobox_search" id="combobox_ustensil">
+                    <div class="combobox_btn ustensil" data-name="Ustensil">
+                        <input type="text" placeholder="Ustensiles" onkeypress="updateOption()" id="ustensil" />
+                        <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                    <div class="choice ustensil">
+                        <ul class="options" id="choice_ustensil"></ul>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Results-->
+        <div id="result"></div>
+    </main>
+
+    <script src="data/recipes.js"></script>
+    <script src="scripts/utils/combobox.js"></script>
+    <script src="scripts/page/index.js" type="module"></script>
+</body>
+
+</html>
