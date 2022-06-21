@@ -118,7 +118,6 @@ function addChoice(selectedChoice) {
 function updateOption() {
     // Ingredient
     inputIngredient.addEventListener("keyup", () => {
-        console.log(inputIngredient.value);
         if (inputIngredient.value.length > 0) {
             comboboxIngredient.classList.add("active");
             optionsIngredient.innerHTML = "";
