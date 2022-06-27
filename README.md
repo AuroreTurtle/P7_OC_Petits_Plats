@@ -5,7 +5,7 @@ Ce projet a été réalisé en juin 2022 lors de ma formation de développeur fr
 ## Scénario :
 
 <p align="center">
-  <img src="assets/logo.png">
+  <img src="assets/logo.PNG">
 </p>
 
 Je suis en freelance et je viens d’être missionnée par l’entreprise “Les petits plats” en tant que Développeuse Front-end pour une mission de 3 mois.
