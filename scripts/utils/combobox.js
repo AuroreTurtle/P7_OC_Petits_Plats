@@ -1,7 +1,3 @@
-////////////////////////////////////////////////////////////////////////////
-// /!\ Pas demandé supprimer tag après sélectionner mais le faire si le temps
-/////////////////////////////////////////////////////////////////////////////
-
 const combobox = document.querySelector("#combobox");
 const comboboxBtn = combobox.querySelectorAll(".combobox_btn");
 
@@ -9,7 +5,7 @@ const comboboxBtn = combobox.querySelectorAll(".combobox_btn");
 const comboboxIngredient = document.querySelector("#combobox_ingredient");
 const inputIngredient = combobox.querySelector("#ingredient");
 const optionsIngredient = combobox.querySelector("#choice_ingredient");
-const choicesIngredient = getIngredients(recipes);
+let choicesIngredient = getIngredients(recipes);
 
 comboboxBtn[0].addEventListener("click", () => {
     comboboxIngredient.classList.toggle("active");
@@ -62,9 +58,7 @@ function onlyUnique(value, index, self) {
 function getIngredients(recipes) {
     const listIngredients = [];
     recipes.forEach((recipe) => {
-        recipe.ingredients.forEach((object) =>
-            listIngredients.push(object.ingredient)
-        );
+        recipe.ingredients.forEach((object) => listIngredients.push(object.ingredient));
     });
     const filteredIngredients = listIngredients.filter(onlyUnique);
     filteredIngredients.sort((a, b) => a.localeCompare(b));
@@ -93,24 +87,27 @@ function getUstensils(recipes) {
 
 /////////////////////////////////////////////////////////////////
 function addChoice(selectedChoice) {
+    // Ingredient
     optionsIngredient.innerText = "";
     choicesIngredient.forEach((choice) => {
         const isSelected = choice === selectedChoice ? "selected" : "";
-        const liIngredient = `<li onclick="selectOption()" class="${isSelected}" data-value='${choice}'>${choice}</li>`;
+        const liIngredient = `<li onclick="selectOption(this)" class="${isSelected}" data-value='${choice}'>${choice}</li>`;
         optionsIngredient.insertAdjacentHTML("beforeend", liIngredient);
     });
 
+    // Appliance
     optionsAppliance.innerText = "";
     choicesAppliance.forEach((choice) => {
         const isSelected = choice === selectedChoice ? "selected" : "";
-        const liAppliance = `<li onclick="selectOption()" class="${isSelected}" data-value='${choice}'>${choice}</li>`;
+        const liAppliance = `<li onclick="selectOption(this)" class="${isSelected}" data-value='${choice}'>${choice}</li>`;
         optionsAppliance.insertAdjacentHTML("beforeend", liAppliance);
     });
 
+    // Ustensil
     optionsUstensil.innerText = "";
     choicesUstensil.forEach((choice) => {
         const isSelected = choice === selectedChoice ? "selected" : "";
-        const liUstensil = `<li onclick="selectOption()" class="${isSelected}" data-value='${choice}'>${choice}</li>`;
+        const liUstensil = `<li onclick="selectOption(this)" class="${isSelected}" data-value='${choice}'>${choice}</li>`;
         optionsUstensil.insertAdjacentHTML("beforeend", liUstensil);
     });
 }
@@ -121,16 +118,14 @@ function updateOption() {
         if (inputIngredient.value.length > 0) {
             comboboxIngredient.classList.add("active");
             optionsIngredient.innerHTML = "";
-            let choiceInput =
-                inputIngredient.value[0].toUpperCase() +
-                inputIngredient.value.slice(1);
-            let filteredList = choicesIngredient.filter((option) =>
-                option.includes(choiceInput)
+            let choiceInput = inputIngredient.value[0].toUpperCase() + inputIngredient.value.slice(1);
+            let filteredList = choicesIngredient.filter(
+                (option) => option.includes(choiceInput) || option.includes(inputIngredient.value.toLowerCase())
             );
             for (let option of filteredList) {
                 optionsIngredient.insertAdjacentHTML(
                     "beforeend",
-                    `<li onclick="selectOption()" data-value='${option}'>${option}</li>`
+                    `<li onclick="selectOption(e)" data-value='${option}'>${option}</li>`
                 );
             }
         } else {
@@ -143,16 +138,14 @@ function updateOption() {
         if (inputAppliance.value.length > 0) {
             comboboxAppliance.classList.add("active");
             optionsAppliance.innerHTML = "";
-            let choiceInput =
-                inputAppliance.value[0].toUpperCase() +
-                inputAppliance.value.slice(1);
-            let filteredList = choicesAppliance.filter((option) =>
-                option.includes(choiceInput)
+            let choiceInput = inputAppliance.value[0].toUpperCase() + inputAppliance.value.slice(1);
+            let filteredList = choicesAppliance.filter(
+                (option) => option.includes(choiceInput) || option.includes(inputAppliance.value.toLowerCase())
             );
             for (let option of filteredList) {
                 optionsAppliance.insertAdjacentHTML(
                     "beforeend",
-                    `<li onclick="selectOption()" data-value='${option}'>${option}</li>`
+                    `<li onclick="selectOption(e)" data-value='${option}'>${option}</li>`
                 );
             }
         } else {
@@ -165,16 +158,15 @@ function updateOption() {
         if (inputUstensil.value.length > 0) {
             comboboxUstensil.classList.add("active");
             optionsUstensil.innerHTML = "";
-            let choiceInput =
-                inputUstensil.value[0].toUpperCase() +
-                inputUstensil.value.slice(1);
-            let filteredList = choicesUstensil.filter((option) =>
-                option.includes(choiceInput)
+            let choiceInput = inputUstensil.value[0].toUpperCase() + inputUstensil.value.slice(1);
+            let filteredList = choicesUstensil.filter(
+                (option) => option.includes(choiceInput) || option.includes(inputUstensil.value.toLowerCase())
             );
             for (let option of filteredList) {
+                console.log(option);
                 optionsUstensil.insertAdjacentHTML(
                     "beforeend",
-                    `<li onclick="selectOption()" data-value='${option}'>${option}</li>`
+                    `<li onclick="selectOption(this)" data-value='${option}'>${option}</li>`
                 );
             }
         } else {
@@ -183,65 +175,74 @@ function updateOption() {
     });
 }
 
-function selectOption() {
+function selectOption(e) {
     const tags = document.querySelector("#option_selected");
+    const spanTag = document.createElement("span");
+    spanTag.classList.add("tag");
+    spanTag.setAttribute("data-value", e.dataset.value);
+    spanTag.textContent = e.dataset.value;
+    spanTag.insertAdjacentHTML("beforeend", `<i onclick="removeTag(this)" class="fa-regular fa-circle-xmark"></i>`);
+    tags.appendChild(spanTag);
 
-    // Ingredient
-    optionsIngredient.addEventListener("click", (e) => {
-        const spanTag = document.createElement("span");
-        spanTag.classList.add("tag");
-        spanTag.textContent = e.target.dataset.value;
-        spanTag.insertAdjacentHTML(
-            "beforeend",
-            `<i class="fa-regular fa-circle-xmark"></i>`
-        );
+    if (e.parentNode.id === "choice_ingredient") {
         spanTag.style.background = "#3282f7";
-        tags.appendChild(spanTag);
+        spanTag.setAttribute("data-category", "ingredient");
 
         inputIngredient.value = "";
+
+        let index = choicesIngredient.indexOf(e.dataset.value);
+        choicesIngredient.splice(index, 1);
         addChoice(choicesIngredient);
 
         comboboxIngredient.classList.remove("active");
         inputIngredient.setAttribute("placeholder", "Ingrédients");
-    });
-
-    // Appliance
-    optionsAppliance.addEventListener("click", (e) => {
-        const spanTag = document.createElement("span");
-        spanTag.classList.add("tag");
-        spanTag.textContent = e.target.dataset.value;
-        spanTag.insertAdjacentHTML(
-            "beforeend",
-            `<i class="fa-regular fa-circle-xmark"></i>`
-        );
-        spanTag.style.background = "#68D9A4";
-        tags.appendChild(spanTag);
+    } else if (e.parentNode.id === "choice_appliance") {
+        spanTag.style.background = "#68d9a4";
+        spanTag.setAttribute("data-category", "appliance");
 
         inputAppliance.value = "";
+
+        let index = choicesAppliance.indexOf(e.dataset.value);
+        choicesAppliance.splice(index, 1);
         addChoice(choicesAppliance);
 
         comboboxAppliance.classList.remove("active");
         inputAppliance.setAttribute("placeholder", "Appareils");
-    });
-
-    // Ustensil
-    optionsUstensil.addEventListener("click", (e) => {
-        const spanTag = document.createElement("span");
-        spanTag.classList.add("tag");
-        spanTag.textContent = e.target.dataset.value;
-        spanTag.insertAdjacentHTML(
-            "beforeend",
-            `<i class="fa-regular fa-circle-xmark"></i>`
-        );
-        spanTag.style.background = "#ED6454";
-        tags.appendChild(spanTag);
+    } else if (e.parentNode.id === "choice_ustensil") {
+        spanTag.style.background = "#ed6454";
+        spanTag.setAttribute("data-category", "ustensil");
 
         inputUstensil.value = "";
+
+        let index = choicesUstensil.indexOf(e.dataset.value);
+        choicesUstensil.splice(index, 1);
         addChoice(choicesUstensil);
 
         comboboxUstensil.classList.remove("active");
         inputUstensil.setAttribute("placeholder", "Ustensiles");
-    });
+    } else {
+        console.log("Not found");
+    }
+}
+
+function removeTag(e) {
+    e.parentNode.remove();
+
+    if (e.parentNode.dataset.category === "ingredient") {
+        choicesIngredient.push(e.parentNode.dataset.value);
+        choicesIngredient.sort((a, b) => a.localeCompare(b));
+        addChoice(choicesIngredient);
+    } else if (e.parentNode.dataset.category === "appliance") {
+        choicesAppliance.push(e.parentNode.dataset.value);
+        choicesAppliance.sort((a, b) => a.localeCompare(b));
+        addChoice(choicesAppliance);
+    } else if (e.parentNode.dataset.category === "ustensil") {
+        choicesUstensil.push(e.parentNode.dataset.value);
+        choicesUstensil.sort((a, b) => a.localeCompare(b));
+        addChoice(choicesUstensil);
+    } else {
+        console.log("Not found");
+    }
 }
 
 addChoice();
