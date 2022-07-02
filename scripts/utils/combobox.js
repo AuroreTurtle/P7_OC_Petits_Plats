@@ -86,33 +86,30 @@ function getUstensils(recipes) {
 }
 
 /////////////////////////////////////////////////////////////////
-function addChoice(selectedChoice) {
+function addChoice() {
     // Ingredient
     optionsIngredient.innerText = "";
     choicesIngredient.forEach((choice) => {
-        const isSelected = choice === selectedChoice ? "selected" : "";
-        const liIngredient = `<li onclick="selectOption(this)" class="${isSelected}" data-value='${choice}'>${choice}</li>`;
+        const liIngredient = `<li onclick="selectOption(this)" data-value='${choice}'>${choice}</li>`;
         optionsIngredient.insertAdjacentHTML("beforeend", liIngredient);
     });
 
     // Appliance
     optionsAppliance.innerText = "";
     choicesAppliance.forEach((choice) => {
-        const isSelected = choice === selectedChoice ? "selected" : "";
-        const liAppliance = `<li onclick="selectOption(this)" class="${isSelected}" data-value='${choice}'>${choice}</li>`;
+        const liAppliance = `<li onclick="selectOption(this)" data-value='${choice}'>${choice}</li>`;
         optionsAppliance.insertAdjacentHTML("beforeend", liAppliance);
     });
 
     // Ustensil
     optionsUstensil.innerText = "";
     choicesUstensil.forEach((choice) => {
-        const isSelected = choice === selectedChoice ? "selected" : "";
-        const liUstensil = `<li onclick="selectOption(this)" class="${isSelected}" data-value='${choice}'>${choice}</li>`;
+        const liUstensil = `<li onclick="selectOption(this)" data-value='${choice}'>${choice}</li>`;
         optionsUstensil.insertAdjacentHTML("beforeend", liUstensil);
     });
 }
 
-function updateOption() {
+function searchOption() {
     // Ingredient
     inputIngredient.addEventListener("keyup", () => {
         if (inputIngredient.value.length > 0) {
@@ -125,7 +122,7 @@ function updateOption() {
             for (let option of filteredList) {
                 optionsIngredient.insertAdjacentHTML(
                     "beforeend",
-                    `<li onclick="selectOption(e)" data-value='${option}'>${option}</li>`
+                    `<li onclick="selectOption(this)" data-value='${option}'>${option}</li>`
                 );
             }
         } else {
@@ -145,7 +142,7 @@ function updateOption() {
             for (let option of filteredList) {
                 optionsAppliance.insertAdjacentHTML(
                     "beforeend",
-                    `<li onclick="selectOption(e)" data-value='${option}'>${option}</li>`
+                    `<li onclick="selectOption(this)" data-value='${option}'>${option}</li>`
                 );
             }
         } else {
@@ -190,10 +187,6 @@ function selectOption(e) {
 
         inputIngredient.value = "";
 
-        let index = choicesIngredient.indexOf(e.dataset.value);
-        choicesIngredient.splice(index, 1);
-        addChoice(choicesIngredient);
-
         comboboxIngredient.classList.remove("active");
         inputIngredient.setAttribute("placeholder", "Ingrédients");
     } else if (e.parentNode.id === "choice_appliance") {
@@ -202,10 +195,6 @@ function selectOption(e) {
 
         inputAppliance.value = "";
 
-        let index = choicesAppliance.indexOf(e.dataset.value);
-        choicesAppliance.splice(index, 1);
-        addChoice(choicesAppliance);
-
         comboboxAppliance.classList.remove("active");
         inputAppliance.setAttribute("placeholder", "Appareils");
     } else if (e.parentNode.id === "choice_ustensil") {
@@ -213,10 +202,6 @@ function selectOption(e) {
         spanTag.setAttribute("data-category", "ustensil");
 
         inputUstensil.value = "";
-
-        let index = choicesUstensil.indexOf(e.dataset.value);
-        choicesUstensil.splice(index, 1);
-        addChoice(choicesUstensil);
 
         comboboxUstensil.classList.remove("active");
         inputUstensil.setAttribute("placeholder", "Ustensiles");
@@ -227,22 +212,6 @@ function selectOption(e) {
 
 function removeTag(e) {
     e.parentNode.remove();
-
-    if (e.parentNode.dataset.category === "ingredient") {
-        choicesIngredient.push(e.parentNode.dataset.value);
-        choicesIngredient.sort((a, b) => a.localeCompare(b));
-        addChoice(choicesIngredient);
-    } else if (e.parentNode.dataset.category === "appliance") {
-        choicesAppliance.push(e.parentNode.dataset.value);
-        choicesAppliance.sort((a, b) => a.localeCompare(b));
-        addChoice(choicesAppliance);
-    } else if (e.parentNode.dataset.category === "ustensil") {
-        choicesUstensil.push(e.parentNode.dataset.value);
-        choicesUstensil.sort((a, b) => a.localeCompare(b));
-        addChoice(choicesUstensil);
-    } else {
-        console.log("Not found");
-    }
 }
 
 addChoice();
