@@ -1,4 +1,5 @@
 import { recipeFactory } from "../factories/recipeFactory.js";
+import { tagSearch } from "./tagSearch.js";
 
 const searchInput = document.querySelector("#search");
 const result = document.querySelector("#result");
@@ -27,10 +28,39 @@ function filterRecipe() {
                 chercher « tarte aux pommes », « poisson », etc</p>`;
             } else {
                 displayRecipe(filteredArray);
+
+                updatedOption(filteredArray);
+                tagSearch(filteredArray);
             }
         } else {
             result.innerHTML = "";
             displayRecipe(recipes);
         }
+    });
+}
+
+export function updatedOption(recipes) {
+    // Ingredient
+    const filteredIngredients = getIngredients(recipes);
+    optionsIngredient.innerText = "";
+    filteredIngredients.forEach((choice) => {
+        const liIngredient = `<li onclick="selectOption(this)" data-value='${choice}'>${choice}</li>`;
+        optionsIngredient.insertAdjacentHTML("beforeend", liIngredient);
+    });
+
+    // Appliance
+    const filteredAppliances = getAppliances(recipes);
+    optionsAppliance.innerText = "";
+    filteredAppliances.forEach((choice) => {
+        const liAppliance = `<li onclick="selectOption(this)" data-value='${choice}'>${choice}</li>`;
+        optionsAppliance.insertAdjacentHTML("beforeend", liAppliance);
+    });
+
+    // Ustensil
+    const filteredUstensils = getUstensils(recipes);
+    optionsUstensil.innerText = "";
+    filteredUstensils.forEach((choice) => {
+        const liUstensil = `<li onclick="selectOption(this)" data-value='${choice}'>${choice}</li>`;
+        optionsUstensil.insertAdjacentHTML("beforeend", liUstensil);
     });
 }
