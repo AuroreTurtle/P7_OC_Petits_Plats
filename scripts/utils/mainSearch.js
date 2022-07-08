@@ -18,7 +18,6 @@ function filterRecipe() {
 
             let filteredArray = [];
             for (let i = 0; i < recipes.length; i++) {
-                console.log(filteredArray);
                 for (let a = 0; a < recipes[i].ingredients.length; a++) {
                     if (
                         recipes[i].ingredients[a].ingredient.toLowerCase().includes(searchString) ||
@@ -44,6 +43,7 @@ function filterRecipe() {
         } else {
             result.innerHTML = "";
             displayRecipe(recipes);
+            updatedOption(recipes);
         }
     });
 }
