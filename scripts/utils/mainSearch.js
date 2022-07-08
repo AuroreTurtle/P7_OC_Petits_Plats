@@ -35,6 +35,7 @@ function filterRecipe() {
         } else {
             result.innerHTML = "";
             displayRecipe(recipes);
+            updatedOption(recipes);
         }
     });
 }
