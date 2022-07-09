@@ -15,14 +15,15 @@ function filterRecipe() {
         if (searchInput.value.length >= 3) {
             result.innerHTML = "";
             const searchString = searchInput.value.toLowerCase();
-
+            let t0 = performance.now();
             const filteredArray = recipes.filter(
                 (element) =>
                     element.name.toLowerCase().includes(searchString) ||
                     element.description.toLowerCase().includes(searchString) ||
                     element.ingredients.some((el) => el.ingredient.toLowerCase().includes(searchString))
             );
-
+            let t1 = performance.now();
+            console.log(t1 - t0, "ms");
             if (filteredArray == 0) {
                 result.innerHTML = `<p>Aucune recette ne correspond à votre critère … Vous pouvez 
                 chercher « tarte aux pommes », « poisson », etc</p>`;
