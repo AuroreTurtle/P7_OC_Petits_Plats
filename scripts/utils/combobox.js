@@ -90,7 +90,7 @@ function addChoice() {
     // Ingredient
     optionsIngredient.innerText = "";
     choicesIngredient.forEach((choice) => {
-        const liIngredient = `<li onclick="selectOption(this)" data-value=${choice}">${choice}</li>`;
+        const liIngredient = `<li onclick="selectOption(this)" data-value="${choice}">${choice}</li>`;
         optionsIngredient.insertAdjacentHTML("beforeend", liIngredient);
     });
 
