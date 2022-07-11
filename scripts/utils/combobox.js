@@ -90,21 +90,21 @@ function addChoice() {
     // Ingredient
     optionsIngredient.innerText = "";
     choicesIngredient.forEach((choice) => {
-        const liIngredient = `<li onclick="selectOption(this)" data-value='${choice}'>${choice}</li>`;
+        const liIngredient = `<li onclick="selectOption(this)" data-value=${choice}">${choice}</li>`;
         optionsIngredient.insertAdjacentHTML("beforeend", liIngredient);
     });
 
     // Appliance
     optionsAppliance.innerText = "";
     choicesAppliance.forEach((choice) => {
-        const liAppliance = `<li onclick="selectOption(this)" data-value='${choice}'>${choice}</li>`;
+        const liAppliance = `<li onclick="selectOption(this)" data-value="${choice}">${choice}</li>`;
         optionsAppliance.insertAdjacentHTML("beforeend", liAppliance);
     });
 
     // Ustensil
     optionsUstensil.innerText = "";
     choicesUstensil.forEach((choice) => {
-        const liUstensil = `<li onclick="selectOption(this)" data-value='${choice}'>${choice}</li>`;
+        const liUstensil = `<li onclick="selectOption(this)" data-value="${choice}">${choice}</li>`;
         optionsUstensil.insertAdjacentHTML("beforeend", liUstensil);
     });
 }
