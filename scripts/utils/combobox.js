@@ -58,7 +58,9 @@ function onlyUnique(value, index, self) {
 function getIngredients(recipes) {
     const listIngredients = [];
     recipes.forEach((recipe) => {
-        recipe.ingredients.forEach((object) => listIngredients.push(object.ingredient));
+        recipe.ingredients.forEach((object) =>
+            listIngredients.push(object.ingredient)
+        );
     });
     const filteredIngredients = listIngredients.filter(onlyUnique);
     filteredIngredients.sort((a, b) => a.localeCompare(b));
@@ -90,21 +92,21 @@ function addChoice() {
     // Ingredient
     optionsIngredient.innerText = "";
     choicesIngredient.forEach((choice) => {
-        const liIngredient = `<li onclick="selectOption(this)" data-value='${choice}'>${choice}</li>`;
+        const liIngredient = `<li onclick="selectOption(this)" data-value="${choice}">${choice}</li>`;
         optionsIngredient.insertAdjacentHTML("beforeend", liIngredient);
     });
 
     // Appliance
     optionsAppliance.innerText = "";
     choicesAppliance.forEach((choice) => {
-        const liAppliance = `<li onclick="selectOption(this)" data-value='${choice}'>${choice}</li>`;
+        const liAppliance = `<li onclick="selectOption(this)" data-value="${choice}">${choice}</li>`;
         optionsAppliance.insertAdjacentHTML("beforeend", liAppliance);
     });
 
     // Ustensil
     optionsUstensil.innerText = "";
     choicesUstensil.forEach((choice) => {
-        const liUstensil = `<li onclick="selectOption(this)" data-value='${choice}'>${choice}</li>`;
+        const liUstensil = `<li onclick="selectOption(this)" data-value="${choice}">${choice}</li>`;
         optionsUstensil.insertAdjacentHTML("beforeend", liUstensil);
     });
 }
@@ -115,9 +117,13 @@ function searchOption() {
         if (inputIngredient.value.length > 0) {
             comboboxIngredient.classList.add("active");
             optionsIngredient.innerHTML = "";
-            let choiceInput = inputIngredient.value[0].toUpperCase() + inputIngredient.value.slice(1);
+            let choiceInput =
+                inputIngredient.value[0].toUpperCase() +
+                inputIngredient.value.slice(1);
             let filteredList = choicesIngredient.filter(
-                (option) => option.includes(choiceInput) || option.includes(inputIngredient.value.toLowerCase())
+                (option) =>
+                    option.includes(choiceInput) ||
+                    option.includes(inputIngredient.value.toLowerCase())
             );
             for (let option of filteredList) {
                 optionsIngredient.insertAdjacentHTML(
@@ -135,9 +141,13 @@ function searchOption() {
         if (inputAppliance.value.length > 0) {
             comboboxAppliance.classList.add("active");
             optionsAppliance.innerHTML = "";
-            let choiceInput = inputAppliance.value[0].toUpperCase() + inputAppliance.value.slice(1);
+            let choiceInput =
+                inputAppliance.value[0].toUpperCase() +
+                inputAppliance.value.slice(1);
             let filteredList = choicesAppliance.filter(
-                (option) => option.includes(choiceInput) || option.includes(inputAppliance.value.toLowerCase())
+                (option) =>
+                    option.includes(choiceInput) ||
+                    option.includes(inputAppliance.value.toLowerCase())
             );
             for (let option of filteredList) {
                 optionsAppliance.insertAdjacentHTML(
@@ -155,9 +165,13 @@ function searchOption() {
         if (inputUstensil.value.length > 0) {
             comboboxUstensil.classList.add("active");
             optionsUstensil.innerHTML = "";
-            let choiceInput = inputUstensil.value[0].toUpperCase() + inputUstensil.value.slice(1);
+            let choiceInput =
+                inputUstensil.value[0].toUpperCase() +
+                inputUstensil.value.slice(1);
             let filteredList = choicesUstensil.filter(
-                (option) => option.includes(choiceInput) || option.includes(inputUstensil.value.toLowerCase())
+                (option) =>
+                    option.includes(choiceInput) ||
+                    option.includes(inputUstensil.value.toLowerCase())
             );
             for (let option of filteredList) {
                 console.log(option);
@@ -178,7 +192,10 @@ function selectOption(e) {
     spanTag.classList.add("tag");
     spanTag.setAttribute("data-value", e.dataset.value);
     spanTag.textContent = e.dataset.value;
-    spanTag.insertAdjacentHTML("beforeend", `<i onclick="removeTag(this)" class="fa-regular fa-circle-xmark"></i>`);
+    spanTag.insertAdjacentHTML(
+        "beforeend",
+        `<i onclick="removeTag(this)" class="fa-regular fa-circle-xmark"></i>`
+    );
     tags.appendChild(spanTag);
 
     if (e.parentNode.id === "choice_ingredient") {
