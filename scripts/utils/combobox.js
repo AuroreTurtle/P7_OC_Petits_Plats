@@ -64,8 +64,7 @@ function onlyUnique(value, index, self) {
 
 /**
  * It takes an array of recipes, and returns an array of ingredients, sorted alphabetically.
- * @param recipes - an array of objects, each object has a property called ingredients, which is an
- * array of objects, each object has a property called ingredient, which is a string.
+ * @param recipes - an array of objects, each object has a property called ingredients.
  * @returns An array of ingredients.
  */
 function getIngredients(recipes) {
@@ -80,7 +79,7 @@ function getIngredients(recipes) {
 
 /**
  * It takes an array of recipes, and returns an array of appliances, sorted alphabetically.
- * @param recipes - an array of objects, each object has a property called appliance
+ * @param recipes - an array of objects, each object has a property called appliance.
  * @returns An array of appliances.
  */
 function getAppliances(recipes) {
@@ -95,7 +94,7 @@ function getAppliances(recipes) {
 
 /**
  * It takes an array of recipes, and returns an array of ustensils, sorted alphabetically.
- * @param recipes - an array of objects, each object is a recipe
+ * @param recipes - an array of objects, each object has a property called ustensils.
  * @returns An array of strings.
  */
 function getUstensils(recipes) {
