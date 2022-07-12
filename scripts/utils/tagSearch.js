@@ -1,5 +1,10 @@
 import { displayRecipe, updatedOption } from "../utils/mainSearch.js";
 
+/**
+ * When the user clicks on an ingredient, the recipes that contain that ingredient are filtered and
+ * displayed.
+ * @param recipes - an array of objects
+ */
 function filterByIngredient(recipes) {
     const ingredient = document.querySelector("#choice_ingredient");
     ingredient.addEventListener("click", (e) => {
@@ -13,6 +18,11 @@ function filterByIngredient(recipes) {
     });
 }
 
+/**
+ * When the user clicks on an appliance, the recipes that contain that appliance are filtered and
+ * displayed.
+ * @param recipes - an array of objects
+ */
 function filterByAppliance(recipes) {
     const appliance = document.querySelector("#choice_appliance");
     appliance.addEventListener("click", (e) => {
@@ -24,6 +34,11 @@ function filterByAppliance(recipes) {
     });
 }
 
+/**
+ * When the user clicks on an ustensil, the recipes that contain that ustensil are filtered and
+ * displayed.
+ * @param recipe - the array of objects
+ */
 function filterByUstensil(recipe) {
     const ustensil = document.querySelector("#choice_ustensil");
     ustensil.addEventListener("click", (e) => {
@@ -35,6 +50,7 @@ function filterByUstensil(recipe) {
     });
 }
 
+/* When the user clicks on the tag element, the result is emptied, the all recipes and options are displayed. */
 const tag = document.querySelector("#option_selected");
 tag.addEventListener("click", () => {
     result.innerHTML = "";
@@ -45,6 +61,11 @@ tag.addEventListener("click", () => {
     filterByUstensil(recipes);
 });
 
+/**
+ * It takes a recipe object and calls three functions that filter the recipe object based on the user's
+ * input.
+ * @param recipe - the recipe object
+ */
 export function tagSearch(recipe) {
     filterByIngredient(recipe);
     filterByAppliance(recipe);

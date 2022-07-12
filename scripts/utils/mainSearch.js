@@ -4,12 +4,20 @@ import { tagSearch } from "./tagSearch.js";
 const searchInput = document.querySelector("#search");
 const result = document.querySelector("#result");
 
+/**
+ * It takes an array of recipes and for each recipe in the array, it calls the recipeFactory function
+ * and passes the recipe as an argument.
+ * @param recipes - an array of objects
+ */
 export function displayRecipe(recipes) {
     recipes.forEach((recipe) => recipeFactory(recipe));
 }
 
 searchInput.addEventListener("input", filterRecipe());
 
+/**
+ * It filters the recipes array based on the search input value, and displays the results
+ */
 function filterRecipe() {
     searchInput.addEventListener("keyup", () => {
         if (searchInput.value.length >= 3) {
@@ -49,6 +57,11 @@ function filterRecipe() {
     });
 }
 
+/**
+ * It takes an array of recipes, filters the ingredients, appliances and utensils, and then updates the
+ * options in the dropdown menus
+ * @param recipes - an array of objects
+ */
 export function updatedOption(recipes) {
     // Ingredient
     const filteredIngredients = getIngredients(recipes);
