@@ -19,7 +19,8 @@ function filterByIngredient(recipes) {
 }
 
 /**
- * It filters the recipes by appliance and displays the filtered recipes.
+ * When the user clicks on an appliance, the recipes that contain that appliance are filtered and
+ * displayed.
  * @param recipes - an array of objects
  */
 function filterByAppliance(recipes) {
@@ -34,7 +35,8 @@ function filterByAppliance(recipes) {
 }
 
 /**
- * It filters the recipes by ustensil and displays the filtered recipes.
+ * When the user clicks on an ustensil, the recipes that contain that ustensil are filtered and
+ * displayed.
  * @param recipe - the array of objects
  */
 function filterByUstensil(recipe) {
