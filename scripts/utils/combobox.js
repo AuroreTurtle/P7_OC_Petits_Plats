@@ -51,10 +51,23 @@ comboboxBtn[2].addEventListener("click", () => {
 });
 
 //////////////////////////////////////////////////////////
+/**
+ * The onlyUnique function returns the index of the first occurrence of a value in an array.
+ * @param value - The current element being processed in the array.
+ * @param index - The index of the current element being processed in the array.
+ * @param self - The array object the current element belongs to.
+ * @returns The index of the first occurrence of the value in the array.
+ */
 function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
 }
 
+/**
+ * It takes an array of recipes, and returns an array of ingredients, sorted alphabetically.
+ * @param recipes - an array of objects, each object has a property called ingredients, which is an
+ * array of objects, each object has a property called ingredient, which is a string.
+ * @returns An array of ingredients.
+ */
 function getIngredients(recipes) {
     const listIngredients = [];
     recipes.forEach((recipe) => {
@@ -65,6 +78,11 @@ function getIngredients(recipes) {
     return filteredIngredients;
 }
 
+/**
+ * It takes an array of recipes, and returns an array of appliances, sorted alphabetically.
+ * @param recipes - an array of objects, each object has a property called appliance
+ * @returns An array of appliances.
+ */
 function getAppliances(recipes) {
     const listAppliances = [];
     recipes.forEach((recipe) => {
@@ -75,6 +93,11 @@ function getAppliances(recipes) {
     return filteredAppliances;
 }
 
+/**
+ * It takes an array of recipes, and returns an array of ustensils, sorted alphabetically.
+ * @param recipes - an array of objects, each object is a recipe
+ * @returns An array of strings.
+ */
 function getUstensils(recipes) {
     const listUstensil = [];
     recipes.forEach((recipe) => {
@@ -86,6 +109,10 @@ function getUstensils(recipes) {
 }
 
 /////////////////////////////////////////////////////////////////
+/**
+ * For each choice in the choicesIngredient array, create a list item with the value of the choice and
+ * insert it into the optionsIngredient element.
+ */
 function addChoice() {
     // Ingredient
     optionsIngredient.innerText = "";
@@ -109,6 +136,10 @@ function addChoice() {
     });
 }
 
+/**
+ * It adds an event listener to each input, and when the user types something, it filters the list of
+ * options and displays the filtered list.
+ */
 function searchOption() {
     // Ingredient
     inputIngredient.addEventListener("keyup", () => {
@@ -172,6 +203,11 @@ function searchOption() {
     });
 }
 
+/**
+ * It creates a span tag with the data-value of the clicked element, and appends it to the
+ * #option_selected div.
+ * @param e - the element that was clicked
+ */
 function selectOption(e) {
     const tags = document.querySelector("#option_selected");
     const spanTag = document.createElement("span");
@@ -210,6 +246,10 @@ function selectOption(e) {
     }
 }
 
+/**
+ * It removes the tag clicking on the cross.
+ * @param e - the event object
+ */
 function removeTag(e) {
     e.parentNode.remove();
 }

@@ -1,5 +1,8 @@
+/**
+ * It creates a article of recipe with the name, description, ingredients and time
+ */
 export function recipeFactory(recipe) {
-    const { id, name, ingredients, time, description } = recipe;
+    const { name, ingredients, time, description } = recipe;
 
     const result = document.querySelector("#result");
 
