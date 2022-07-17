@@ -41,11 +41,12 @@ function filterRecipe() {
                 updatedOption(filteredArray);
                 tagSearch(filteredArray);
             }
-        } else {
-            result.innerHTML = "";
-            displayRecipe(recipes);
-            updatedOption(recipes);
         }
+        // else {
+        //     result.innerHTML = "";
+        //     displayRecipe(recipes);
+        //     updatedOption(recipes);
+        // }
     });
 }
 
@@ -59,7 +60,7 @@ export function updatedOption(recipes) {
     const filteredIngredients = getIngredients(recipes);
     optionsIngredient.innerText = "";
     filteredIngredients.forEach((choice) => {
-        const liIngredient = `<li onclick="selectOption(this)" data-value='${choice}'>${choice}</li>`;
+        const liIngredient = `<li data-value='${choice}'>${choice}</li>`;
         optionsIngredient.insertAdjacentHTML("beforeend", liIngredient);
     });
 
@@ -67,7 +68,7 @@ export function updatedOption(recipes) {
     const filteredAppliances = getAppliances(recipes);
     optionsAppliance.innerText = "";
     filteredAppliances.forEach((choice) => {
-        const liAppliance = `<li onclick="selectOption(this)" data-value='${choice}'>${choice}</li>`;
+        const liAppliance = `<li data-value='${choice}'>${choice}</li>`;
         optionsAppliance.insertAdjacentHTML("beforeend", liAppliance);
     });
 
@@ -75,7 +76,7 @@ export function updatedOption(recipes) {
     const filteredUstensils = getUstensils(recipes);
     optionsUstensil.innerText = "";
     filteredUstensils.forEach((choice) => {
-        const liUstensil = `<li onclick="selectOption(this)" data-value='${choice}'>${choice}</li>`;
+        const liUstensil = `<li data-value='${choice}'>${choice}</li>`;
         optionsUstensil.insertAdjacentHTML("beforeend", liUstensil);
     });
 }

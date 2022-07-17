@@ -116,21 +116,21 @@ function addChoice() {
     // Ingredient
     optionsIngredient.innerText = "";
     choicesIngredient.forEach((choice) => {
-        const liIngredient = `<li onclick="selectOption(this)" data-value="${choice}">${choice}</li>`;
+        const liIngredient = `<li data-value="${choice}">${choice}</li>`;
         optionsIngredient.insertAdjacentHTML("beforeend", liIngredient);
     });
 
     // Appliance
     optionsAppliance.innerText = "";
     choicesAppliance.forEach((choice) => {
-        const liAppliance = `<li onclick="selectOption(this)" data-value="${choice}">${choice}</li>`;
+        const liAppliance = `<li data-value="${choice}">${choice}</li>`;
         optionsAppliance.insertAdjacentHTML("beforeend", liAppliance);
     });
 
     // Ustensil
     optionsUstensil.innerText = "";
     choicesUstensil.forEach((choice) => {
-        const liUstensil = `<li onclick="selectOption(this)" data-value="${choice}">${choice}</li>`;
+        const liUstensil = `<li data-value="${choice}">${choice}</li>`;
         optionsUstensil.insertAdjacentHTML("beforeend", liUstensil);
     });
 }
@@ -150,10 +150,7 @@ function searchOption() {
                 (option) => option.includes(choiceInput) || option.includes(inputIngredient.value.toLowerCase())
             );
             for (let option of filteredList) {
-                optionsIngredient.insertAdjacentHTML(
-                    "beforeend",
-                    `<li onclick="selectOption(this)" data-value='${option}'>${option}</li>`
-                );
+                optionsIngredient.insertAdjacentHTML("beforeend", `<li data-value="${option}">${option}</li>`);
             }
         } else {
             addChoice(choicesIngredient);
@@ -170,10 +167,7 @@ function searchOption() {
                 (option) => option.includes(choiceInput) || option.includes(inputAppliance.value.toLowerCase())
             );
             for (let option of filteredList) {
-                optionsAppliance.insertAdjacentHTML(
-                    "beforeend",
-                    `<li onclick="selectOption(this)" data-value='${option}'>${option}</li>`
-                );
+                optionsAppliance.insertAdjacentHTML("beforeend", `<li data-value="${option}">${option}</li>`);
             }
         } else {
             addChoice(choicesAppliance);
@@ -191,10 +185,7 @@ function searchOption() {
             );
             for (let option of filteredList) {
                 console.log(option);
-                optionsUstensil.insertAdjacentHTML(
-                    "beforeend",
-                    `<li onclick="selectOption(this)" data-value='${option}'>${option}</li>`
-                );
+                optionsUstensil.insertAdjacentHTML("beforeend", `<li data-value="${option}">${option}</li>`);
             }
         } else {
             addChoice(choicesUstensil);
@@ -209,14 +200,18 @@ function searchOption() {
  */
 function selectOption(e) {
     const tags = document.querySelector("#option_selected");
+    const parentOptions = document.querySelector(`[data-value="${e}"]`);
     const spanTag = document.createElement("span");
     spanTag.classList.add("tag");
-    spanTag.setAttribute("data-value", e.dataset.value);
-    spanTag.textContent = e.dataset.value;
-    spanTag.insertAdjacentHTML("beforeend", `<i onclick="removeTag(this)" class="fa-regular fa-circle-xmark"></i>`);
+    // spanTag.setAttribute("data-value", e.dataset.value);
+    spanTag.textContent = e;
+    spanTag.insertAdjacentHTML(
+        "beforeend",
+        `<i onclick="removeTag(this)" class="fa-regular fa-circle-xmark" data-name="icone"></i>`
+    );
     tags.appendChild(spanTag);
 
-    if (e.parentNode.id === "choice_ingredient") {
+    if (parentOptions.parentNode.id === "choice_ingredient") {
         spanTag.style.background = "#3282f7";
         spanTag.setAttribute("data-category", "ingredient");
 
@@ -224,7 +219,7 @@ function selectOption(e) {
 
         comboboxIngredient.classList.remove("active");
         inputIngredient.setAttribute("placeholder", "Ingrédients");
-    } else if (e.parentNode.id === "choice_appliance") {
+    } else if (parentOptions.parentNode.id === "choice_appliance") {
         spanTag.style.background = "#68d9a4";
         spanTag.setAttribute("data-category", "appliance");
 
@@ -232,7 +227,7 @@ function selectOption(e) {
 
         comboboxAppliance.classList.remove("active");
         inputAppliance.setAttribute("placeholder", "Appareils");
-    } else if (e.parentNode.id === "choice_ustensil") {
+    } else if (parentOptions.parentNode.id === "choice_ustensil") {
         spanTag.style.background = "#ed6454";
         spanTag.setAttribute("data-category", "ustensil");
 
@@ -245,12 +240,56 @@ function selectOption(e) {
     }
 }
 
+let tagArray = new Set();
+/**
+ * When an option is clicked, the tags clear and option add to the tagArray puis the tags display with
+ * the new option.
+ */
+function onlyTag() {
+    // let tagArray = new Set();
+    const tags = document.querySelector("#option_selected");
+    optionsIngredient.addEventListener("click", (e) => {
+        tags.innerHTML = "";
+        if (!tagArray.has(e.target.dataset.value)) {
+            tagArray.add(e.target.dataset.value);
+        }
+
+        for (let i of tagArray) {
+            selectOption(i);
+        }
+    });
+
+    optionsAppliance.addEventListener("click", (e) => {
+        tags.innerHTML = "";
+        if (!tagArray.has(e.target.dataset.value)) {
+            tagArray.add(e.target.dataset.value);
+        }
+
+        for (let i of tagArray) {
+            selectOption(i);
+        }
+    });
+
+    optionsUstensil.addEventListener("click", (e) => {
+        tags.innerHTML = "";
+        if (!tagArray.has(e.target.dataset.value)) {
+            tagArray.add(e.target.dataset.value);
+        }
+
+        for (let i of tagArray) {
+            selectOption(i);
+        }
+    });
+}
+
 /**
  * It removes the tag clicking on the cross.
  * @param e - the event object
  */
 function removeTag(e) {
     e.parentNode.remove();
+    tagArray.delete(e.parentNode.textContent);
 }
 
 addChoice();
+onlyTag();
