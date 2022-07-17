@@ -203,7 +203,6 @@ function selectOption(e) {
     const parentOptions = document.querySelector(`[data-value="${e}"]`);
     const spanTag = document.createElement("span");
     spanTag.classList.add("tag");
-    // spanTag.setAttribute("data-value", e.dataset.value);
     spanTag.textContent = e;
     spanTag.insertAdjacentHTML(
         "beforeend",
@@ -246,7 +245,6 @@ let tagArray = new Set();
  * the new option.
  */
 function onlyTag() {
-    // let tagArray = new Set();
     const tags = document.querySelector("#option_selected");
     optionsIngredient.addEventListener("click", (e) => {
         tags.innerHTML = "";
