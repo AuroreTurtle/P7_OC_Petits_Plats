@@ -52,13 +52,15 @@ function filterByUstensil(recipe) {
 
 /* When the user clicks on the tag element, the result is emptied, the all recipes and options are displayed. */
 const tag = document.querySelector("#option_selected");
-tag.addEventListener("click", () => {
-    result.innerHTML = "";
-    displayRecipe(recipes);
-    addChoice();
-    filterByIngredient(recipes);
-    filterByAppliance(recipes);
-    filterByUstensil(recipes);
+tag.addEventListener("click", (e) => {
+    if (e.target.dataset.name == "icone") {
+        result.innerHTML = "";
+        displayRecipe(recipes);
+        addChoice();
+        filterByIngredient(recipes);
+        filterByAppliance(recipes);
+        filterByUstensil(recipes);
+    }
 });
 
 /**
