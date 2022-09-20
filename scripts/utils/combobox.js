@@ -198,7 +198,7 @@ function searchOption() {
  * #option_selected div.
  * @param e - the element that was clicked
  */
-function selectOption(e) {
+function selectOption(e, event) {
     const tags = document.querySelector("#option_selected");
     const parentOptions = document.querySelector(`[data-value="${e}"]`);
     const spanTag = document.createElement("span");
@@ -218,7 +218,8 @@ function selectOption(e) {
 
         comboboxIngredient.classList.remove("active");
         inputIngredient.setAttribute("placeholder", "Ingrédients");
-    } else if (parentOptions.parentNode.id === "choice_appliance") {
+    } else if (event.target.parentNode.id === "choice_appliance") {
+        console.log("vert");
         spanTag.style.background = "#68d9a4";
         spanTag.setAttribute("data-category", "appliance");
 
@@ -226,7 +227,7 @@ function selectOption(e) {
 
         comboboxAppliance.classList.remove("active");
         inputAppliance.setAttribute("placeholder", "Appareils");
-    } else if (parentOptions.parentNode.id === "choice_ustensil") {
+    } else if (event.target.parentNode.id === "choice_ustensil") {
         spanTag.style.background = "#ed6454";
         spanTag.setAttribute("data-category", "ustensil");
 
@@ -253,7 +254,7 @@ function onlyTag() {
         }
 
         for (let i of tagArray) {
-            selectOption(i);
+            selectOption(i, e);
         }
     });
 
@@ -264,7 +265,7 @@ function onlyTag() {
         }
 
         for (let i of tagArray) {
-            selectOption(i);
+            selectOption(i, e);
         }
     });
 
@@ -275,7 +276,7 @@ function onlyTag() {
         }
 
         for (let i of tagArray) {
-            selectOption(i);
+            selectOption(i, e);
         }
     });
 }
