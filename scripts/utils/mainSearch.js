@@ -41,12 +41,11 @@ function filterRecipe() {
                 updatedOption(filteredArray);
                 tagSearch(filteredArray);
             }
+        } else {
+            result.innerHTML = "";
+            displayRecipe(recipes);
+            updatedOption(recipes);
         }
-        // else {
-        //     result.innerHTML = "";
-        //     displayRecipe(recipes);
-        //     updatedOption(recipes);
-        // }
     });
 }
 
