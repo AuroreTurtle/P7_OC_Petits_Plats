@@ -183,7 +183,6 @@ function searchOption() {
                 (option) => option.toLowerCase().includes(choiceInput)
             );
             for (let option of filteredList) {
-                console.log(option);
                 optionsUstensil.insertAdjacentHTML("beforeend", `<li data-value="${option}">${option}</li>`);
             }
         } else {
