@@ -109,8 +109,7 @@ function getUstensils(recipes) {
 
 /////////////////////////////////////////////////////////////////
 /**
- * For each choice in the choicesIngredient array, create a list item with the value of the choice and
- * insert it into the optionsIngredient element.
+ * For each choice, we create a list item with the value of the choice.
  */
 function addChoice() {
     // Ingredient
@@ -145,9 +144,9 @@ function searchOption() {
         if (inputIngredient.value.length > 0) {
             comboboxIngredient.classList.add("active");
             optionsIngredient.innerHTML = "";
-            let choiceInput = inputIngredient.value[0].toUpperCase() + inputIngredient.value.slice(1);
+            let choiceInput = inputIngredient.value.toLowerCase();
             let filteredList = choicesIngredient.filter(
-                (option) => option.includes(choiceInput) || option.includes(inputIngredient.value.toLowerCase())
+                (option) => option.toLowerCase().includes(choiceInput) 
             );
             for (let option of filteredList) {
                 optionsIngredient.insertAdjacentHTML("beforeend", `<li data-value="${option}">${option}</li>`);
@@ -162,9 +161,9 @@ function searchOption() {
         if (inputAppliance.value.length > 0) {
             comboboxAppliance.classList.add("active");
             optionsAppliance.innerHTML = "";
-            let choiceInput = inputAppliance.value[0].toUpperCase() + inputAppliance.value.slice(1);
+            let choiceInput = inputAppliance.value.toLowerCase();
             let filteredList = choicesAppliance.filter(
-                (option) => option.includes(choiceInput) || option.includes(inputAppliance.value.toLowerCase())
+                (option) => option.toLowerCase().includes(choiceInput)
             );
             for (let option of filteredList) {
                 optionsAppliance.insertAdjacentHTML("beforeend", `<li data-value="${option}">${option}</li>`);
@@ -179,9 +178,9 @@ function searchOption() {
         if (inputUstensil.value.length > 0) {
             comboboxUstensil.classList.add("active");
             optionsUstensil.innerHTML = "";
-            let choiceInput = inputUstensil.value[0].toUpperCase() + inputUstensil.value.slice(1);
+            let choiceInput = inputUstensil.value.toLowerCase();
             let filteredList = choicesUstensil.filter(
-                (option) => option.includes(choiceInput) || option.includes(inputUstensil.value.toLowerCase())
+                (option) => option.toLowerCase().includes(choiceInput)
             );
             for (let option of filteredList) {
                 console.log(option);
@@ -218,6 +217,7 @@ function selectOption(e) {
 
         comboboxIngredient.classList.remove("active");
         inputIngredient.setAttribute("placeholder", "Ingrédients");
+
     } else if (parentOptions.parentNode.id === "choice_appliance") {
         spanTag.style.background = "#68d9a4";
         spanTag.setAttribute("data-category", "appliance");
@@ -226,6 +226,7 @@ function selectOption(e) {
 
         comboboxAppliance.classList.remove("active");
         inputAppliance.setAttribute("placeholder", "Appareils");
+
     } else if (parentOptions.parentNode.id === "choice_ustensil") {
         spanTag.style.background = "#ed6454";
         spanTag.setAttribute("data-category", "ustensil");
@@ -234,6 +235,7 @@ function selectOption(e) {
 
         comboboxUstensil.classList.remove("active");
         inputUstensil.setAttribute("placeholder", "Ustensiles");
+
     } else {
         console.log("Not found");
     }
@@ -246,6 +248,7 @@ let tagArray = new Set();
  */
 function onlyTag() {
     const tags = document.querySelector("#option_selected");
+    
     optionsIngredient.addEventListener("click", (e) => {
         tags.innerHTML = "";
         if (!tagArray.has(e.target.dataset.value)) {

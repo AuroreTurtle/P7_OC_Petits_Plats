@@ -78,6 +78,7 @@ tag.addEventListener("click", (e) => {
                 displayRecipe(filteredRecipe);
                 tagSearch(filteredRecipe);
             }
+
         } else if (setTagIng.size == 0 && setTagApp.size > 0 && setTagUst.size > 0) {
             for (let i = 0; i < Array.from(setTagUst).length; i++) {
                 const filteredRecipe = recipes.filter(
@@ -90,6 +91,7 @@ tag.addEventListener("click", (e) => {
                 displayRecipe(filteredRecipe);
                 tagSearch(filteredRecipe);
             }
+
         } else if (setTagIng.size > 0 && setTagApp.size == 0 && setTagUst.size > 0) {
             for (let i = 0; i < Array.from(setTagUst).length; i++) {
                 const filteredRecipe = recipes.filter(
@@ -102,6 +104,7 @@ tag.addEventListener("click", (e) => {
                 displayRecipe(filteredRecipe);
                 tagSearch(filteredRecipe);
             }
+
         } else if (setTagIng.size > 0 && setTagApp.size > 0 && setTagUst.size == 0) {
             const filteredRecipe = recipes.filter(
                 (element) =>
@@ -112,6 +115,7 @@ tag.addEventListener("click", (e) => {
             updatedOption(filteredRecipe);
             displayRecipe(filteredRecipe);
             tagSearch(filteredRecipe);
+
         } else if (setTagIng.size > 0 && setTagApp.size == 0 && setTagUst.size == 0) {
             const filteredRecipe = recipes.filter((element) =>
                 element.ingredients.some((el) => el.ingredient.includes(Array.from(setTagIng)))
@@ -120,12 +124,14 @@ tag.addEventListener("click", (e) => {
             updatedOption(filteredRecipe);
             displayRecipe(filteredRecipe);
             tagSearch(filteredRecipe);
+
         } else if (setTagIng.size == 0 && setTagApp.size > 0 && setTagUst.size == 0) {
             const filteredRecipe = recipes.filter((element) => element.appliance.includes(Array.from(setTagApp)));
             result.innerHTML = "";
             updatedOption(filteredRecipe);
             displayRecipe(filteredRecipe);
             tagSearch(filteredRecipe);
+
         } else if (setTagIng.size == 0 && setTagApp.size == 0 && setTagUst.size > 0) {
             for (let i = 0; i < Array.from(setTagUst).length; i++) {
                 const filteredRecipe = recipes.filter((element) =>
@@ -136,6 +142,7 @@ tag.addEventListener("click", (e) => {
                 displayRecipe(filteredRecipe);
                 tagSearch(filteredRecipe);
             }
+
         } else {
             result.innerHTML = "";
             updatedOption(recipes);
