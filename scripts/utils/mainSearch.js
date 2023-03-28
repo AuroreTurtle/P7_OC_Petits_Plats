@@ -16,7 +16,7 @@ export function displayRecipe(recipes) {
 searchInput.addEventListener("input", filterRecipe());
 
 /**
- * It filters the recipes array based on the search input value, and displays the results
+ * It filters the recipes array based on the search input value, and displays the results.
  */
 function filterRecipe() {
     searchInput.addEventListener("keyup", () => {
@@ -32,15 +32,16 @@ function filterRecipe() {
             );
             let t1 = performance.now();
             console.log(t1 - t0, "ms");
+
             if (filteredArray == 0) {
                 result.innerHTML = `<p>Aucune recette ne correspond à votre critère … Vous pouvez 
                 chercher « tarte aux pommes », « poisson », etc</p>`;
             } else {
                 displayRecipe(filteredArray);
-
                 updatedOption(filteredArray);
                 tagSearch(filteredArray);
             }
+            
         } else {
             result.innerHTML = "";
             displayRecipe(recipes);
