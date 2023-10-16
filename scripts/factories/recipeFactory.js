@@ -2,7 +2,9 @@
  * It creates a article of recipe with the name, description, ingredients and time
  */
 export function recipeFactory(recipe) {
-    const { name, ingredients, time, description } = recipe;
+    const { image, name, ingredients, time, description } = recipe;
+
+    const picture = `assets/image/${image}`;
 
     const result = document.querySelector("#result");
 
@@ -12,7 +14,9 @@ export function recipeFactory(recipe) {
     infoRecipe.className = "info";
 
     //Image recipe
-    const imageRecipe = document.createElement("div");
+    const imageRecipe = document.createElement("img");
+    imageRecipe.setAttribute("src", picture);
+    imageRecipe.setAttribute("alt", name);
     imageRecipe.className = "image";
 
     // Header recipe
