@@ -274,3 +274,151 @@ h2 {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/* Small Desktop */
+@media (max-width: 1040px) {
+    /* Result search */
+    #result {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* Tablet and Small Desktop */
+@media (max-width: 1000px) {
+    body {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    /* Result search */
+    article {
+        margin-bottom: 1%;
+    }
+
+    .image, .info {
+        width: 330px;
+    }
+
+    .info {
+        height: 210px;
+    }
+
+    h2 {
+        width: 200px;
+    }
+
+    .info_description {
+        width: 145px;
+        margin-left: 5px;
+    }
+}
+
+
+/* Mobile */
+@media (max-width: 700px) {
+    #logo {
+        width: 40%;
+    }
+    
+    /* Tag */
+    .tag {
+        margin-bottom: 0;
+        margin-top: 10px;
+    }
+
+    /* Combobox */
+    #combobox {
+        flex-direction: column;
+    }
+
+    .combobox_search {
+        width: 330px;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .combobox_btn input {
+        width: 250px;
+    }
+
+    .combobox_search.active .combobox_btn {
+        width: 300px;
+    }
+
+    .combobox_search.active input {
+        width: 330px;
+    }
+
+    #combobox_ingredient.active .choice,
+    #combobox_appliance.active .choice,
+    #combobox_ustensil.active .choice {
+        width: 320px;
+    }
+
+    .choice .options {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Result search */
+    #result {
+        grid-template-columns: 1fr; 
+        grid-row-gap: 50px; 
+    }
+}
+
+/* Mobile */
+@media (max-width: 380px) {
+    body {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 340px) {
+    body {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    /* Combobox */
+    .combobox_search {
+        width: 300px;
+    }
+
+    .combobox_btn input {
+        width: 220px;
+    }
+
+    .combobox_search.active .combobox_btn {
+        width: 270px;
+    }
+
+    .combobox_search.active input {
+        width: 300px;
+    }
+
+    #combobox_ingredient.active .choice,
+    #combobox_appliance.active .choice,
+    #combobox_ustensil.active .choice {
+        width: 290px;
+    }
+
+     /* Result search */
+    .image, .info {
+        width: 300px;
+    }
+
+    .info {
+        height: 220px;
+    }
+
+    h2 {
+        width: 180px;
+    }
+
+    .info_description {
+        width: 115px;
+    }
+}
