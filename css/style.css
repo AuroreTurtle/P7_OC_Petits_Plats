@@ -203,6 +203,8 @@ form {
 
 article {
     margin-bottom: 2%;
+    background-color: #e7e7e7;
+    width: 380px;
 }
 
 .image {
@@ -216,7 +218,6 @@ article {
 .info {
     width: 380px;
     height: 190px;
-    background-color: #e7e7e7;
     border-radius: 0px 0px 5px 5px;
     margin: 0;
 }
@@ -294,6 +295,7 @@ h2 {
     /* Result search */
     article {
         margin-bottom: 1%;
+        width: 330px;
     }
 
     .image, .info {
@@ -406,7 +408,7 @@ h2 {
     }
 
      /* Result search */
-    .image, .info {
+    article, .image, .info {
         width: 300px;
     }
 
